@@ -1,0 +1,59 @@
+# -- coding: utf-8 --
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+
+# -- coding: utf-8 --
+
+
+"""
+#Image input
+from matplotlib import pyplot as plt
+from PIL import Image
+import numpy as np
+img = Image.open("cat1.jpg")
+arr = np.array(img)
+
+#Image manipulation
+right = 255
+m = int(input('enter m value'))
+partition = 2**m
+print(partition) 
+
+arr_partition = []
+
+for i in range(0,255,partition):
+    arr_partition.append(i)
+
+
+for i in range(arr.shape[0]):
+    for j in range(arr.shape[1]):
+        a,b,c = arr[i,j];
+        r,g,b = arr[i,j]
+        # quantize r
+        for k in range(0,260,partition):
+            if r<=k and r>=k-partition :
+                r = (2*k - partition)/2
+                break
+        # quantize g
+        for k in range(0,260,partition):
+            if g<=k and g>=k-partition :
+                g = (2*k - partition)/2
+                break
+        # quantize b
+        for k in range(0,260,partition):
+            if b<=k and b>=k-partition :
+                b = (2*k - partition)/2
+                break
+            arr[i,j] = (r,g,b)
+            x,y,z = (r,g,b)
+o,p,q = a-x, b-y, c-z;
+print(o,p,q);
+
+img_o = Image.fromarray(arr)
+
+plt.title("for m = %d"%m)
+imag1  = plt.imshow(img_o)
+plt.show()
